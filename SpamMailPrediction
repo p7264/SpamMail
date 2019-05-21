@@ -76,14 +76,14 @@ print("The accuracy of the testing SVM is {:.2f}".format(svm.score(X_test_std, y
 
 #============================================================================================
 
-#4.5.1 Classify by NN
+'''#4.5.1 Classify by NN
 from sklearn.neural_network import MLPClassifier
 nn = MLPClassifier(solver='lbfgs', hidden_layer_sizes=(6, 3), random_state=1)
 nn.fit(X_train, y_train)
 print("The accuracy of the training NN is {:.2f}".format(nn.score(X_train, y_train)))
-print("The accuracy of the testing NN is {:.2f}".format(nn.score(X_test, y_test)))
+print("The accuracy of the testing NN is {:.2f}".format(nn.score(X_test, y_test)))'''
 
-'''#4.5.2 Classify by NN with LSTM
+#4.5.2 Classify by NN with LSTM
 from keras.layers import LSTM
 from keras.models import Sequential
 from keras.layers import Flatten, Dense, Embedding
@@ -101,13 +101,13 @@ history = model.fit(X_train, y_train, epochs=300, batch_size=512, validation_spl
 nn1 = model.evaluate(X_train,y_train)
 nn2 = model.evaluate(X_test,y_test)
 print('The accuracy of the training NN is {:0.2f}'.format(nn1[1]))
-print('The accuracy of the testing NN is {:0.2f}'.format(nn2[1]))'''
+print('The accuracy of the testing NN is {:0.2f}'.format(nn2[1]))
 
 #============================================================================================
 
 #5.1 Initialize list of lists 
 accuracies = [['NB', spam_bayes.score(X_test, y_test)], ['KNN', knn.score(X_test, y_test)], 
-               ['RF',rf.score(X_test, y_test)], ['SVM', svm.score(X_test_std, y_test)], ['NN', nn.score(X_test, y_test)]]
+               ['RF',rf.score(X_test, y_test)], ['SVM', svm.score(X_test_std, y_test)], ['NN', nn2[1]]]
  
 #5.2 Create the pandas DataFrame 
 df = pd.DataFrame(accuracies, columns = ['Algorithm', 'Accuracy']) 
