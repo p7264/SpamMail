@@ -91,13 +91,13 @@ max_features = 20000
 maxlen = 20
 
 model = Sequential()
-model.add(Embedding(max_features, 32))
-model.add(LSTM(32))
+model.add(Embedding(max_features, 64))
+model.add(LSTM(64))
 model.add(Dense(64, activation='relu', input_shape=(20000,)))
 model.add(Dense(64, activation='relu'))
 model.add(Dense(1, activation='sigmoid'))
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['acc'])
-history = model.fit(X_train, y_train, epochs=100, batch_size=128, validation_split=0.2)
+history = model.fit(X_train, y_train, epochs=300, batch_size=512, validation_split=0.2)
 nn1 = model.evaluate(X_train,y_train)
 nn2 = model.evaluate(X_test,y_test)
 print('The accuracy of the training NN is {:0.2f}'.format(nn1[1]))
